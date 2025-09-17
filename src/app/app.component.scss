@@ -1,0 +1,39 @@
+.container{
+  display: flex;
+  gap: 15px;
+}
+.image-container {
+  position: relative;
+}
+
+.headphone-area {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.left-headphone {
+  top: 189px;
+  left: 212px;
+}
+
+.right-headphone {
+  top: 375px;
+  left: 658px;
+}
+
+.headphone-area:hover {
+  opacity: 1;
+}
+
+audio{
+  display: none;
+  position: sticky;
+  top: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .container{
+    flex-direction: column;
+  }
+}
