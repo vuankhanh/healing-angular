@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Track } from '@khajegan/ngx-audio-player';
 import { SoundAnimationUtil } from './utitl/sound_animation.util';
 
 @Component({
@@ -17,14 +16,6 @@ export class AppComponent implements AfterViewInit {
   @ViewChild('audioPlayer') audioPlayer!: ElementRef<HTMLAudioElement>;
   title = 'healing';
   private hasPlayed = false; // Biến cờ
-
-  msaapPlaylist: Track[] = [
-    {
-      title: 'Ở trọ',
-      link: './assets/music/Ở trọ.m4a',
-      artist: 'Audio One Artist'
-    }
-  ];
 
   ngAfterViewInit(): void {
     this.audioPlayer.nativeElement.volume = 0;
@@ -48,5 +39,20 @@ export class AppComponent implements AfterViewInit {
     const fadeDuration = 2000; // 2 giây
     const currentTime = audio.currentTime;
     SoundAnimationUtil.FadeInAudio(audio, fadeDuration, currentTime);
+  }
+
+  onHeadphoneTouchStart(event: TouchEvent): void {
+    console.log(event);
+    event.preventDefault();
+    const target: HTMLImageElement = event.target as HTMLImageElement;
+    target.style.opacity = '1';
+  }
+
+  onHeadphoneTouchEnd(event: TouchEvent): void {
+    event.preventDefault();
+    const target: HTMLImageElement = event.target as HTMLImageElement;
+    target.style.opacity = '0';
+
+    this.onHeadphoneClick();
   }
 }

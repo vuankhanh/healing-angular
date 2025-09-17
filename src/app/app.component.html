@@ -1,8 +1,8 @@
 <div class="container">
   <div class="image-container">
     <img src="assets/relaxing.png" alt="A relaxed monkey listening to music">
-    <img src="assets/relaxing-left-headphone.png" alt="Left headphone" class="headphone-area left-headphone" (click)="onHeadphoneClick()">
-    <img src="assets/relaxing-right-headphone.png" alt="Right headphone" class="headphone-area right-headphone" (click)="onHeadphoneClick()">
+    <img src="assets/relaxing-left-headphone.png" alt="Left headphone" class="headphone-area left-headphone" (click)="onHeadphoneClick()" (touchstart)="onHeadphoneTouchStart($event)" (touchend)="onHeadphoneTouchEnd($event)">
+    <img src="assets/relaxing-right-headphone.png" alt="Right headphone" class="headphone-area right-headphone" (click)="onHeadphoneClick()" (touchstart)="onHeadphoneTouchStart($event)" (touchend)="onHeadphoneTouchEnd($event)">
   </div>
   
   <audio controls loop #audioPlayer>
