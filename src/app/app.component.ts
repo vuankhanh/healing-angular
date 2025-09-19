@@ -1,48 +1,28 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SoundAnimationUtil } from './utitl/sound_animation.util';
+import { PlayerComponent } from './component/player/player.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+
+    PlayerComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements AfterViewInit {
-  // Lấy thẻ <audio> bằng @ViewChild
-  @ViewChild('audioPlayer') audioPlayer!: ElementRef<HTMLAudioElement>;
+export class AppComponent {
   title = 'healing';
-  private hasPlayed = false; // Biến cờ
-
-  ngAfterViewInit(): void {
-    this.audioPlayer.nativeElement.volume = 0;
-  }
-
+  playOrPause = false;
+  showPlayer = false;
   onHeadphoneClick(): void {
-    const audio = this.audioPlayer.nativeElement;
-    audio.style.display = 'unset';
-    
-    // Nếu audio đã phát, chỉ cần play/pause bình thường
-    if (this.hasPlayed) {
-      audio.paused ? audio.play() : audio.pause();
-      return;
-    }
-    
-    // Đặt biến cờ và bắt đầu play
-    this.hasPlayed = true;
-    audio.play();
-    
-    // Gọi hàm util với các tham số
-    const fadeDuration = 2000; // 2 giây
-    const currentTime = audio.currentTime;
-    SoundAnimationUtil.FadeInAudio(audio, fadeDuration, currentTime);
+    this.showPlayer = true;
+    this.playOrPause = !this.playOrPause;
   }
 
   onHeadphoneTouchStart(event: TouchEvent): void {
-    console.log(event);
     event.preventDefault();
     const target: HTMLImageElement = event.target as HTMLImageElement;
     target.style.opacity = '1';

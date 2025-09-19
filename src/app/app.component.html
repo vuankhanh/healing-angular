@@ -4,9 +4,8 @@
     <img src="assets/relaxing-left-headphone.png" alt="Left headphone" class="headphone-area left-headphone" (click)="onHeadphoneClick()" (touchstart)="onHeadphoneTouchStart($event)" (touchend)="onHeadphoneTouchEnd($event)">
     <img src="assets/relaxing-right-headphone.png" alt="Right headphone" class="headphone-area right-headphone" (click)="onHeadphoneClick()" (touchstart)="onHeadphoneTouchStart($event)" (touchend)="onHeadphoneTouchEnd($event)">
   </div>
-  
-  <audio controls loop #audioPlayer>
-    <source  src="assets/music/Thiên Đường Mong Manh.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+
+  @if (showPlayer) {
+    <app-player [playOrPause]="playOrPause"></app-player>
+  }
 </div>
